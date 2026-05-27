@@ -6,7 +6,7 @@ Projeto de portfólio que apresenta um sistema completo de gestão para corretor
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ![Dashboard](docs/screenshots/dashboard_main.png)
 *Dashboard do admin: funil de vendas, KPIs, produção mensal e distribuição da carteira.*
@@ -23,7 +23,7 @@ Projeto de portfólio que apresenta um sistema completo de gestão para corretor
 
 ---
 
-## 📋 Índice
+## Índice
 
 - [Funcionalidades](#-funcionalidades)
 - [Tecnologias](#-tecnologias)
@@ -34,7 +34,7 @@ Projeto de portfólio que apresenta um sistema completo de gestão para corretor
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 ### Cadastros
 - **Clientes**: Pessoas Físicas e Jurídicas com dados completos (endereço, contato, documentos)
@@ -86,7 +86,7 @@ Projeto de portfólio que apresenta um sistema completo de gestão para corretor
 
 ---
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 | Camada | Tecnologia |
 |--------|-----------|
@@ -102,7 +102,7 @@ Projeto de portfólio que apresenta um sistema completo de gestão para corretor
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 brokerly/
@@ -130,7 +130,7 @@ brokerly/
 
 ---
 
-## 🚀 Instalação e Execução Local
+## Instalação e Execução Local
 
 Requer Python 3.12+.
 
@@ -157,35 +157,35 @@ Entre como **Admin** para acesso total e depois como **Corretor** para ver o fil
 
 ---
 
-## 🔒 Papéis e Permissões
+## Papéis e Permissões
 
 O sistema possui 3 papéis com níveis de acesso distintos:
 
 ### Admin
-- ✅ Acesso total a todas as funcionalidades
-- ✅ Gestão de usuários
-- ✅ Todos os relatórios
-- ✅ Gestão de pipelines CRM
-- ✅ Visualiza dados de todos os corretores
+- Acesso total a todas as funcionalidades
+- Gestão de usuários
+- Todos os relatórios
+- Gestão de pipelines CRM
+- Visualiza dados de todos os corretores
 
 ### Gerente (Manager)
-- ✅ Acesso a todas as funcionalidades operacionais
-- ✅ Gestão de usuários
-- ✅ Todos os relatórios
-- ✅ Gestão de pipelines CRM
-- ✅ Visualiza dados de todos os corretores
+- Acesso a todas as funcionalidades operacionais
+- Gestão de usuários
+- Todos os relatórios
+- Gestão de pipelines CRM
+- Visualiza dados de todos os corretores
 
 ### Corretor (Broker)
-- ✅ Cadastro e gestão de clientes (apenas os seus)
-- ✅ Propostas, apólices, sinistros, endossos e renovações (apenas os seus)
-- ✅ CRM Kanban e negociações (apenas as suas)
-- ❌ **Sem acesso** a relatórios gerenciais
-- ❌ **Sem acesso** a gestão de pipelines
-- ❌ **Sem acesso** a gestão de usuários
+- Cadastro e gestão de clientes (apenas os seus)
+- Propostas, apólices, sinistros, endossos e renovações (apenas os seus)
+- CRM Kanban e negociações (apenas as suas)
+- **Sem acesso** a relatórios gerenciais
+- **Sem acesso** a gestão de pipelines
+- **Sem acesso** a gestão de usuários
 
 ---
 
-## 🤖 Agente de IA
+## Agente de IA
 
 O agente de IA usa LangChain e LangGraph para oferecer chat, insights de dashboard e resumos de entidades. Ele respeita as permissões do usuário logado: corretores consultam apenas seus próprios dados, enquanto admins e gerentes acessam a visão completa.
 
@@ -193,6 +193,6 @@ Configure `OPENAI_API_KEY` e `OPENAI_MODEL` no `.env` para habilitar os recursos
 
 ---
 
-## 📄 Licença
+## Licença
 
 Projeto criado para fins de portfólio e demonstração técnica.
