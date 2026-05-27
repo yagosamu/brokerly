@@ -1,11 +1,11 @@
-# Brokerly — Insurance Brokerage Management System
+# Brokerly: Insurance Brokerage Management System
 
 [![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-6.0-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 
-Full-stack web application for managing the operations of an insurance brokerage — from client onboarding and proposal handling to policies, claims, endorsements, renewals, and a built-in CRM with sales pipeline. Includes an AI assistant for natural-language data queries and automated dashboard insights.
+Full-stack web application for managing the operations of an insurance brokerage: from client onboarding and proposal handling to policies, claims, endorsements, renewals, and a built-in CRM with sales pipeline. Includes an AI assistant for natural-language data queries and automated dashboard insights.
 
 > Documentação em português disponível em [README.pt-br.md](README.pt-br.md).
 
@@ -14,7 +14,7 @@ Full-stack web application for managing the operations of an insurance brokerage
 ## Screenshots
 
 ![Dashboard](docs/screenshots/dashboard_main.png)
-*Admin dashboard — sales funnel, KPIs, monthly production, and portfolio distribution.*
+*Admin dashboard: sales funnel, KPIs, monthly production, and portfolio distribution.*
 
 | CRM Kanban | AI Assistant |
 |:----------:|:------------:|
@@ -44,25 +44,25 @@ Full-stack web application for managing the operations of an insurance brokerage
 ## Features
 
 ### Core Records
-- **Clients** — Individuals (PF) and companies (PJ) with full contact, address, and document data
-- **Insurers** — Registration with SUSEP code, lines of business, and contacts
-- **Coverages** — Insurance types, coverage definitions, and coverage items
+- **Clients**: Individuals (PF) and companies (PJ) with full contact, address, and document data
+- **Insurers**: Registration with SUSEP code, lines of business, and contacts
+- **Coverages**: Insurance types, coverage definitions, and coverage items
 
 ### Operations
-- **Proposals** — Full lifecycle: draft → submitted → under review → approved/rejected
-- **Policies** — Validity periods, premiums, installments, commissions, and document attachments
-- **Claims** — Opening, follow-up, event timeline, and documentation
-- **Endorsements** — Inclusion, exclusion, modification, cancellation, and transfer
-- **Renewals** — Expiration tracking with urgency and overdue alerts
+- **Proposals**: Full lifecycle: draft → submitted → under review → approved/rejected
+- **Policies**: Validity periods, premiums, installments, commissions, and document attachments
+- **Claims**: Opening, follow-up, event timeline, and documentation
+- **Endorsements**: Inclusion, exclusion, modification, cancellation, and transfer
+- **Renewals**: Expiration tracking with urgency and overdue alerts
 
 ### Sales
-- **CRM / Kanban** — Visual pipeline with drag-and-drop (SortableJS), filters by priority and broker
-- **Deals** — Full CRUD with activities (notes, calls, emails, meetings, tasks)
-- **Pipelines** — Customizable stages with colors and won/lost markers
+- **CRM / Kanban**: Visual pipeline with drag-and-drop (SortableJS), filters by priority and broker
+- **Deals**: Full CRUD with activities (notes, calls, emails, meetings, tasks)
+- **Pipelines**: Customizable stages with colors and won/lost markers
 
 ### Analytics
-- **Dashboard** — KPIs, monthly production charts, distribution by type/insurer, claims overview
-- **Reports** — 10 reports with filters, CSV and PDF export:
+- **Dashboard**: KPIs, monthly production charts, distribution by type/insurer, claims overview
+- **Reports**: 10 reports with filters, CSV and PDF export:
   - Production by Period
   - Commissions by Broker
   - Portfolio by Insurer
@@ -75,9 +75,9 @@ Full-stack web application for managing the operations of an insurance brokerage
   - Endorsements by Period
 
 ### AI Agent
-- **Conversational assistant** — Ask questions in natural language about your portfolio, deals, claims, and renewals
-- **Auto-generated dashboard insights** — Executive summaries tailored to each user's role
-- **Entity summaries** — One-click AI summaries for clients, deals, policies, proposals, and claims
+- **Conversational assistant**: Ask questions in natural language about your portfolio, deals, claims, and renewals
+- **Auto-generated dashboard insights**: Executive summaries tailored to each user's role
+- **Entity summaries**: One-click AI summaries for clients, deals, policies, proposals, and claims
 - Built on LangChain + LangGraph with role-based tool access
 
 ### Administration & UI
@@ -223,7 +223,7 @@ python manage.py runserver
 http://localhost:8000
 ```
 
-You'll land on the login page — use the credentials below.
+You'll land on the login page. Use the credentials below.
 
 ---
 
@@ -232,7 +232,7 @@ You'll land on the login page — use the credentials below.
 The `seed_demo` command creates a complete realistic dataset:
 
 ```bash
-# First run — creates all demo data
+# First run: creates all demo data
 python manage.py seed_demo
 
 # Re-run from a clean state
@@ -311,10 +311,10 @@ The AI Agent is a LangChain/LangGraph-based assistant integrated into the system
 
 ### Key capabilities
 
-- **Tool-restricted access** — the agent can only see data the logged-in user is allowed to see (broker tools filter by `broker=user`, admin/manager tools see everything)
+- **Tool-restricted access**: the agent can only see data the logged-in user is allowed to see (broker tools filter by `broker=user`, admin/manager tools see everything)
 - **Tools available**: client/deal/policy/proposal/claim/renewal search, summary metrics, monthly production, top insurers, commission breakdowns
-- **System prompt personalization** — adapts tone and scope to the user's role and name
-- **Insights generation** — `generate_insights` command produces a daily executive summary per user
+- **System prompt personalization**: adapts tone and scope to the user's role and name
+- **Insights generation**: `generate_insights` command produces a daily executive summary per user
 
 ### Configuration
 
@@ -325,5 +325,5 @@ Set `OPENAI_API_KEY` and `OPENAI_MODEL` in `.env`. Without these, the AI Agent e
 ## Notes
 
 - This project was originally built as part of a Django course and has been cleaned up and extended for public sharing.
-- The DuralUX admin theme (in `static/` and `design_system/refs/duralux/`) is a third-party template — copyrights and attributions in the bundled CSS/JS files are kept intact.
-- Tests are scaffolded but not implemented — left as a future improvement.
+- The DuralUX admin theme (in `static/` and `design_system/refs/duralux/`) is a third-party template; copyrights and attributions in the bundled CSS/JS files are kept intact.
+- Tests are scaffolded but not implemented, left as a future improvement.

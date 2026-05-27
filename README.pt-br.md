@@ -1,4 +1,4 @@
-# Brokerly — Sistema de Corretora de Seguros
+# Brokerly: Sistema de Corretora de Seguros
 
 > English version available at [README.md](README.md).
 
@@ -9,7 +9,7 @@ Sistema completo de gestão para corretoras de seguros, desenvolvido em Django. 
 ## 📸 Screenshots
 
 ![Dashboard](docs/screenshots/dashboard_main.png)
-*Dashboard do admin — funil de vendas, KPIs, produção mensal e distribuição da carteira.*
+*Dashboard do admin: funil de vendas, KPIs, produção mensal e distribuição da carteira.*
 
 | CRM Kanban | Assistente IA |
 |:----------:|:-------------:|
@@ -40,25 +40,25 @@ Sistema completo de gestão para corretoras de seguros, desenvolvido em Django. 
 ## ✨ Funcionalidades
 
 ### Cadastros
-- **Clientes** — Pessoas Físicas e Jurídicas com dados completos (endereço, contato, documentos)
-- **Seguradoras** — Cadastro com código SUSEP, ramos e contatos
-- **Coberturas** — Tipos de seguro, coberturas e itens de cobertura
+- **Clientes**: Pessoas Físicas e Jurídicas com dados completos (endereço, contato, documentos)
+- **Seguradoras**: Cadastro com código SUSEP, ramos e contatos
+- **Coberturas**: Tipos de seguro, coberturas e itens de cobertura
 
 ### Operações
-- **Propostas** — Ciclo completo: rascunho → enviada → em análise → aprovada/recusada
-- **Apólices** — Gestão de vigência, prêmios, parcelas, comissões e documentos
-- **Sinistros** — Abertura, acompanhamento, timeline de eventos e documentação
-- **Endossos** — Inclusão, exclusão, alteração, cancelamento e transferência
-- **Renovações** — Controle de vencimentos com alertas de urgência e atraso
+- **Propostas**: Ciclo completo: rascunho → enviada → em análise → aprovada/recusada
+- **Apólices**: Gestão de vigência, prêmios, parcelas, comissões e documentos
+- **Sinistros**: Abertura, acompanhamento, timeline de eventos e documentação
+- **Endossos**: Inclusão, exclusão, alteração, cancelamento e transferência
+- **Renovações**: Controle de vencimentos com alertas de urgência e atraso
 
 ### Comercial
-- **CRM / Kanban** — Pipeline visual com drag-and-drop (SortableJS), filtros por prioridade e corretor
-- **Negociações** — CRUD completo com atividades (notas, ligações, emails, reuniões, tarefas)
-- **Pipelines** — Gestão de etapas customizáveis com cores e marcação de ganho/perda
+- **CRM / Kanban**: Pipeline visual com drag-and-drop (SortableJS), filtros por prioridade e corretor
+- **Negociações**: CRUD completo com atividades (notas, ligações, emails, reuniões, tarefas)
+- **Pipelines**: Gestão de etapas customizáveis com cores e marcação de ganho/perda
 
 ### Análise
-- **Dashboard** — KPIs, gráficos de produção mensal, distribuição por tipo/seguradora, sinistros
-- **Relatórios** — 10 relatórios com filtros, exportação CSV e PDF:
+- **Dashboard**: KPIs, gráficos de produção mensal, distribuição por tipo/seguradora, sinistros
+- **Relatórios**: 10 relatórios com filtros, exportação CSV e PDF:
   - Produção por Período
   - Comissões por Corretor
   - Carteira por Seguradora
@@ -71,8 +71,8 @@ Sistema completo de gestão para corretoras de seguros, desenvolvido em Django. 
   - Endossos por Período
 
 ### Administração
-- **Usuários** — CRUD com papéis (Admin, Gerente, Corretor)
-- **Perfil** — Edição de dados pessoais e troca de senha
+- **Usuários**: CRUD com papéis (Admin, Gerente, Corretor)
+- **Perfil**: Edição de dados pessoais e troca de senha
 
 ### UI/UX
 - Tema DuralUX com design system completo
@@ -228,7 +228,7 @@ Você será redirecionado para a tela de login. Use as credenciais da seção [U
 O comando `seed_demo` cria um conjunto completo de dados realistas para demonstração:
 
 ```bash
-# Primeira execução — cria todos os dados
+# Primeira execução: cria todos os dados
 python manage.py seed_demo
 
 # Re-executar limpando dados anteriores
