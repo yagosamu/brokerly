@@ -5,7 +5,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 
-Full-stack web application for managing the operations of an insurance brokerage: from client onboarding and proposal handling to policies, claims, endorsements, renewals, and a built-in CRM with sales pipeline. Includes an AI assistant for natural-language data queries and automated dashboard insights.
+Portfolio project showcasing a full-stack web application for managing the operations of an insurance brokerage: from client onboarding and proposal handling to policies, claims, endorsements, renewals, and a built-in CRM with sales pipeline. Includes an AI assistant for natural-language data queries and automated dashboard insights.
 
 > Documentação em português disponível em [README.pt-br.md](README.pt-br.md).
 
@@ -34,8 +34,6 @@ Full-stack web application for managing the operations of an insurance brokerage
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
-- [Demo Data](#demo-data)
-- [Test Users](#test-users)
 - [Roles & Permissions](#roles--permissions)
 - [AI Agent](#ai-agent)
 
@@ -137,143 +135,28 @@ brokerly/
 
 ## Getting Started
 
-### Prerequisites
-
-- Python 3.12 or higher
-- pip
-- Git (optional)
-
-### 1. Clone the repository
+Requires Python 3.12+.
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/yagosamu/brokerly.git
 cd brokerly
-```
-
-### 2. Create and activate a virtual environment
-
-```bash
-python -m venv .venv
-
-# macOS / Linux
-source .venv/bin/activate
-
-# Windows
-.venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```bash
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-### 4. Configure environment variables
-
-Copy the example file and edit it with your values:
-
-```bash
-cp .env.example .env
-```
-
-Available variables:
-
-| Variable          | Required | Default                              | Description                                                  |
-|-------------------|----------|--------------------------------------|--------------------------------------------------------------|
-| `SECRET_KEY`      | prod     | dev-only fallback when `DEBUG=True`  | Django secret key (generate a random 50-char string)         |
-| `DEBUG`           | no       | `True`                               | Enables debug mode and dev defaults                          |
-| `ALLOWED_HOSTS`   | no       | `localhost,127.0.0.1`                | Comma-separated list of allowed hosts                        |
-| `OPENAI_API_KEY`  | AI only  | empty                                | Required for AI Agent, insights, and summaries               |
-| `OPENAI_MODEL`    | no       | `gpt-5.4`                            | OpenAI model used by the AI Agent                            |
-
-> When `DEBUG=False`, `SECRET_KEY` **must** be provided or the app refuses to start.
-
-### 5. Run migrations
-
-```bash
+cp .env.example .env                                 # optionally set OPENAI_API_KEY for AI features
 python manage.py migrate
-```
-
-### 6. Seed demo data (recommended)
-
-```bash
-python manage.py seed_demo
-```
-
-Creates users, insurers, clients, policies, deals, and everything needed for a functional demo.
-
-### 7. Generate AI insights (optional, requires `.env` configured)
-
-```bash
-python manage.py generate_insights
-
-# For a single user
-python manage.py generate_insights --user_id 1
-```
-
-### 8. Start the development server
-
-```bash
+python manage.py seed_demo                           # ~20 clients, 20 policies, 15 deals, claims, renewals
 python manage.py runserver
 ```
 
-### 9. Open in your browser
+Open `http://localhost:8000` and log in with one of the seeded users:
 
-```
-http://localhost:8000
-```
+| Role    | Email                  | Password       |
+|---------|------------------------|----------------|
+| Admin   | `admin@brokerly.com`   | `admin123`     |
+| Manager | `gerente@brokerly.com` | `gerente123`   |
+| Broker  | `carlos@brokerly.com`  | `corretor123`  |
 
-You'll land on the login page. Use the credentials below.
-
----
-
-## Demo Data
-
-The `seed_demo` command creates a complete realistic dataset:
-
-```bash
-# First run: creates all demo data
-python manage.py seed_demo
-
-# Re-run from a clean state
-python manage.py seed_demo --clear
-```
-
-### What gets created
-
-| Entity         | Count | Notes                                                                |
-|----------------|-------|----------------------------------------------------------------------|
-| Users          | 5     | 1 Admin, 1 Manager, 3 Brokers                                        |
-| Insurance Types| 8     | Auto, Life, Home, Business, Health, Travel, Liability, Cargo         |
-| Coverages      | ~50   | Distributed across insurance types                                   |
-| Insurers       | 8     | Porto Seguro, SulAmérica, Bradesco, Allianz, Tokio, HDI, Mapfre, Liberty |
-| Clients        | 20    | 12 individuals + 8 companies                                         |
-| Proposals      | 28    | 20 approved, 5 rejected, 3 pending/under review                      |
-| Policies       | 20    | Active, expired, and cancelled over the last 12 months               |
-| Claims         | 8     | Open, under review, approved, paid, denied                           |
-| Endorsements   | 6     | Inclusion, exclusion, modification, cancellation, transfer           |
-| Renewals       | 10    | Pending, contacted, quote sent, renewed, not renewed                 |
-| CRM Pipelines  | 2     | "New Business" (7 stages) and "Renewals" (5 stages)                  |
-| Deals          | 15    | Distributed across all pipeline stages                               |
-| Activities     | ~40   | Notes, calls, emails, meetings, tasks                                |
-
-> The `--clear` flag **deletes all data** (except superusers) before recreating. Use with care.
-
----
-
-## Test Users
-
-Created automatically by `seed_demo`:
-
-| Name                   | Email                       | Password       | Role              |
-|------------------------|-----------------------------|----------------|-------------------|
-| Administrador Brokerly | `admin@brokerly.com`        | `admin123`     | Admin             |
-| Maria Oliveira         | `gerente@brokerly.com`      | `gerente123`   | Manager           |
-| Carlos Silva           | `carlos@brokerly.com`       | `corretor123`  | Broker            |
-| Ana Santos             | `ana@brokerly.com`          | `corretor123`  | Broker            |
-| Rafael Pereira         | `rafael@brokerly.com`       | `corretor123`  | Broker            |
-
-> To experience the permission system, log in as **Admin** (full access), then as **Broker** (restricted to own data).
+Log in as **Admin** for full access, then switch to **Broker** to see role-based data filtering in action.
 
 ---
 
@@ -318,12 +201,4 @@ The AI Agent is a LangChain/LangGraph-based assistant integrated into the system
 
 ### Configuration
 
-Set `OPENAI_API_KEY` and `OPENAI_MODEL` in `.env`. Without these, the AI Agent endpoints will fail gracefully and the rest of the system continues to work.
-
----
-
-## Notes
-
-- This project was originally built as part of a Django course and has been cleaned up and extended for public sharing.
-- The DuralUX admin theme (in `static/` and `design_system/refs/duralux/`) is a third-party template; copyrights and attributions in the bundled CSS/JS files are kept intact.
-- Tests are scaffolded but not implemented, left as a future improvement.
+Set `OPENAI_API_KEY` and `OPENAI_MODEL` in `.env`. Without these, the AI Agent endpoints fail gracefully and the rest of the system continues to work.

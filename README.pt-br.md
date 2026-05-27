@@ -2,7 +2,7 @@
 
 > English version available at [README.md](README.md).
 
-Sistema completo de gestão para corretoras de seguros, desenvolvido em Django. Abrange desde o cadastro de clientes e seguradoras até o CRM de vendas, controle de sinistros, renovações, endossos e relatórios gerenciais.
+Projeto de portfólio que apresenta um sistema completo de gestão para corretoras de seguros, desenvolvido em Django. Abrange desde o cadastro de clientes e seguradoras até o CRM de vendas, controle de sinistros, renovações, endossos, relatórios gerenciais e recursos de IA.
 
 ---
 
@@ -28,12 +28,9 @@ Sistema completo de gestão para corretoras de seguros, desenvolvido em Django. 
 - [Funcionalidades](#-funcionalidades)
 - [Tecnologias](#-tecnologias)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Pré-requisitos](#-pré-requisitos)
 - [Instalação e Execução Local](#-instalação-e-execução-local)
-- [Seed de Dados Demo](#-seed-de-dados-demo)
-- [Usuários e Senhas de Teste](#-usuários-e-senhas-de-teste)
 - [Papéis e Permissões](#-papéis-e-permissões)
-- [Licença](#-licença)
+- [Agente de IA](#-agente-de-ia)
 
 ---
 
@@ -81,6 +78,12 @@ Sistema completo de gestão para corretoras de seguros, desenvolvido em Django. 
 - Tabelas responsivas, filtros e busca em todas as listas
 - Badges de status com cores semânticas
 
+### Agente de IA
+- Assistente conversacional para consultar carteira, negociações, sinistros e renovações
+- Insights automáticos no dashboard por papel de usuário
+- Resumos de clientes, negociações, apólices, propostas e sinistros
+- Implementado com LangChain, LangGraph e controle de acesso por papel
+
 ---
 
 ## 🛠️ Tecnologias
@@ -95,6 +98,7 @@ Sistema completo de gestão para corretoras de seguros, desenvolvido em Django. 
 | PDF Export | xhtml2pdf |
 | Form Rendering | django-widget-tweaks |
 | Imagens | Pillow |
+| IA / LLM | LangChain, LangGraph, OpenAI |
 
 ---
 
@@ -103,6 +107,7 @@ Sistema completo de gestão para corretoras de seguros, desenvolvido em Django. 
 ```
 brokerly/
 ├── accounts/          # Autenticação, usuários e perfis
+├── ai_agent/          # Assistente de IA, insights e resumos
 ├── claims/            # Sinistros e documentos
 ├── clients/           # Clientes (PF/PJ)
 ├── core/              # Settings, URLs raiz, WSGI
@@ -125,151 +130,30 @@ brokerly/
 
 ---
 
-## 📦 Pré-requisitos
-
-- **Python** 3.12 ou superior
-- **pip** (gerenciador de pacotes Python)
-- **Git** (opcional, para clonar o repositório)
-
----
-
 ## 🚀 Instalação e Execução Local
 
-### 1. Clone o repositório
+Requer Python 3.12+.
 
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/yagosamu/brokerly.git
 cd brokerly
-```
-
-### 2. Crie e ative o ambiente virtual
-
-```bash
-python -m venv .venv
-
-# macOS / Linux
-source .venv/bin/activate
-
-# Windows
-.venv\Scripts\activate
-```
-
-### 3. Instale as dependências
-
-```bash
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-### 4. Configure as variáveis de ambiente
-
-Crie o arquivo `.env` na raiz do projeto usando o `.env.example` como base:
-
-```bash
-cp .env.example .env
-```
-
-Variáveis disponíveis:
-
-| Variável          | Obrigatória | Padrão                                | Descrição                                                       |
-|-------------------|-------------|---------------------------------------|-----------------------------------------------------------------|
-| `SECRET_KEY`      | em prod     | fallback de dev quando `DEBUG=True`   | Chave secreta do Django (gere uma string aleatória de ~50 chars)|
-| `DEBUG`           | não         | `True`                                | Ativa modo de debug e defaults de desenvolvimento               |
-| `ALLOWED_HOSTS`   | não         | `localhost,127.0.0.1`                 | Lista de hosts permitidos separados por vírgula                 |
-| `OPENAI_API_KEY`  | só IA       | vazio                                 | Necessária para o AI Agent, insights e resumos                  |
-| `OPENAI_MODEL`    | não         | `gpt-5.4`                             | Modelo OpenAI usado pelo AI Agent                               |
-
-> Quando `DEBUG=False`, `SECRET_KEY` **precisa** ser definida ou a app recusa iniciar.
-
-### 5. Execute as migrações
-
-```bash
+cp .env.example .env                                 # opcional: defina OPENAI_API_KEY para usar a IA
 python manage.py migrate
-```
-
-### 6. Popule com dados de demonstração (opcional, recomendado)
-
-```bash
-python manage.py seed_demo
-```
-
-> 💡 Isso cria automaticamente os usuários de teste, seguradoras, clientes, apólices e todos os dados necessários para uma demonstração funcional. Veja a seção [Seed de Dados Demo](#-seed-de-dados-demo) para mais detalhes.
-
-### 7. Gere os insights de IA (opcional, requer `.env` configurado)
-
-```bash
-python manage.py generate_insights
-```
-
-Este comando gera insights personalizados no dashboard de cada usuário usando IA. Pode ser executado periodicamente para manter os insights atualizados.
-
-```bash
-# Gerar apenas para um usuário específico
-python manage.py generate_insights --user_id 1
-```
-
-### 8. Inicie o servidor de desenvolvimento
-
-```bash
+python manage.py seed_demo                           # ~20 clientes, 20 apólices, 15 deals, sinistros, renovações
 python manage.py runserver
 ```
 
-### 9. Acesse no navegador
+Acesse `http://localhost:8000` e entre com um dos usuários criados pelo seed:
 
-```
-http://localhost:8000
-```
+| Papel    | Email                  | Senha          |
+|----------|------------------------|----------------|
+| Admin    | `admin@brokerly.com`   | `admin123`     |
+| Gerente  | `gerente@brokerly.com` | `gerente123`   |
+| Corretor | `carlos@brokerly.com`  | `corretor123`  |
 
-Você será redirecionado para a tela de login. Use as credenciais da seção [Usuários e Senhas de Teste](#-usuários-e-senhas-de-teste).
-
----
-
-## 🌱 Seed de Dados Demo
-
-O comando `seed_demo` cria um conjunto completo de dados realistas para demonstração:
-
-```bash
-# Primeira execução: cria todos os dados
-python manage.py seed_demo
-
-# Re-executar limpando dados anteriores
-python manage.py seed_demo --clear
-```
-
-### O que é criado
-
-| Entidade | Quantidade | Detalhes |
-|----------|-----------|----------|
-| Usuários | 5 | 1 Admin, 1 Gerente, 3 Corretores |
-| Tipos de Seguro | 8 | Auto, Vida, Residencial, Empresarial, Saúde, Viagem, RC, Transporte |
-| Coberturas | ~50 | Distribuídas por tipo de seguro |
-| Seguradoras | 8 | Porto Seguro, SulAmérica, Bradesco, Allianz, Tokio Marine, HDI, Mapfre, Liberty |
-| Clientes | 20 | 12 Pessoa Física + 8 Pessoa Jurídica |
-| Propostas | 28 | 20 aprovadas, 5 rejeitadas, 3 pendentes/em análise |
-| Apólices | 20 | Ativas, vencidas e canceladas nos últimos 12 meses |
-| Sinistros | 8 | Abertos, em análise, aprovados, pagos e negados |
-| Endossos | 6 | Inclusão, exclusão, alteração, cancelamento, transferência |
-| Renovações | 10 | Pendentes, contatadas, cotação enviada, renovadas, não renovadas |
-| Pipelines CRM | 2 | "Novos Negócios" (7 etapas) e "Renovações" (5 etapas) |
-| Negociações | 15 | Distribuídas em todas as etapas do pipeline |
-| Atividades | ~40 | Notas, ligações, emails, reuniões e tarefas |
-
-> ⚠️ A flag `--clear` **remove todos os dados** (exceto superusuários) antes de recriar. Use com cuidado em ambientes com dados reais.
-
----
-
-## 🔑 Usuários e Senhas de Teste
-
-Criados automaticamente pelo `seed_demo`:
-
-| Nome | Email | Senha | Papel |
-|------|-------|-------|-------|
-| Administrador Brokerly | `admin@brokerly.com` | `admin123` | Admin |
-| Maria Oliveira | `gerente@brokerly.com` | `gerente123` | Gerente (Manager) |
-| Carlos Silva | `carlos@brokerly.com` | `corretor123` | Corretor (Broker) |
-| Ana Santos | `ana@brokerly.com` | `corretor123` | Corretor (Broker) |
-| Rafael Pereira | `rafael@brokerly.com` | `corretor123` | Corretor (Broker) |
-
-> 💡 Para testar as diferenças de permissão, faça login como **Admin** (acesso total), depois como **Corretor** (acesso restrito aos próprios dados).
+Entre como **Admin** para acesso total e depois como **Corretor** para ver o filtro de permissões em ação.
 
 ---
 
@@ -301,6 +185,14 @@ O sistema possui 3 papéis com níveis de acesso distintos:
 
 ---
 
+## 🤖 Agente de IA
+
+O agente de IA usa LangChain e LangGraph para oferecer chat, insights de dashboard e resumos de entidades. Ele respeita as permissões do usuário logado: corretores consultam apenas seus próprios dados, enquanto admins e gerentes acessam a visão completa.
+
+Configure `OPENAI_API_KEY` e `OPENAI_MODEL` no `.env` para habilitar os recursos de IA. Sem essas variáveis, o restante do sistema continua funcionando normalmente.
+
+---
+
 ## 📄 Licença
 
-Este projeto é privado e de uso interno.
+Projeto criado para fins de portfólio e demonstração técnica.
